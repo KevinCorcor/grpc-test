@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "io.grpc.examples.helloworld";
+option java_outer_classname = "HelloWorldProto";
+option objc_class_prefix = "HLW";
+
+package participants;
+
+service ParticipantsService {
+  rpc getAll (ParticipantsRequest) returns (ParticipantsResponse) {}
+  rpc getById (ParticipantByIdRequest) returns (ParticipantByIdResponse) {}
+}
+
+message ParticipantsRequest {
+  string name = 1;
+}
+
+message ParticipantsResponse {
+  repeated Participant participants = 1;
+}
+
+message ParticipantByIdRequest {
+  string MongoId = 1;
+}
+
+message ParticipantByIdResponse {
+  Participant participant = 1;
+}
+
+message Participant {
+  string MongoId = 1;
+  string id = 2;
+  string firstName = 3;
+  string lastName = 4;
+  string notes = 5;
+}
